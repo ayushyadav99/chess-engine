@@ -1,10 +1,13 @@
 plugins {
     id 'java'
     id 'application'
+    id 'org.springframework.boot' version '2.4.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+group = 'com.chess'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
@@ -25,8 +28,10 @@ application {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    compile 'log4j:log4j:1.2.17'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 test {
