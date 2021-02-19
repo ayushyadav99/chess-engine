@@ -21,6 +21,6 @@ class FizzBuzzProcessorTest {
 
     @Test
     public void FizzBuzzThreeAndFiveNumbers() {
-        Assertions.assertEquals("FizzBuzz", FizzBuzzProcessor.convert(15));
+        Assertions.assertEquals("Buzz", FizzBuzzProcessor.convert(5));
     }
 }
