@@ -1,6 +1,8 @@
 plugins {
     id 'java'
     id 'application'
+    id 'org.springframework.boot' version '2.0.4.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
 group = 'com.chess'
@@ -26,18 +28,20 @@ application {
 }
 
 dependencies {
+//    implementation 'junit:junit:4.12'
+
     // logging
     compile 'log4j:log4j:1.2.17'
     // testing
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-    // spring boot - microservices
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine'
+//    // spring boot - microservices
     implementation 'org.springframework.boot:spring-boot-starter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-    // Writing compact code - lombok
+//
+//    // Writing compact code - lombok
     compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-    // From the react js tutorial
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.16'
+////    // From the react js tutorial
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
