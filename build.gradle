@@ -36,6 +36,7 @@ dependencies {
     // testing
     testImplementation 'org.junit.jupiter:junit-jupiter-engine'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testCompile("org.assertj:assertj-core:3.13.2")
 
     // From the react js tutorial
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
