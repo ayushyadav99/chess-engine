@@ -40,6 +40,19 @@ public class Castling {
         return blackQueenSide && !tempDisableBlackCastling;
     }
 
+    public String generateFenString() {
+        StringBuilder fenString = new StringBuilder();
+        fenString.append(getWhiteKingSide() ? "K" : "");
+        fenString.append(getWhiteQueenSide() ? "Q" : "");
+        fenString.append(getBlackKingSide() ? "k" : "");
+        fenString.append(getBlackQueenSide() ? "q" : "");
+
+        if(fenString.toString().isEmpty()) {
+            return "-";
+        }
+        return fenString.toString();
+    }
+
     public void updateCastling(Move move) {
         updateTempDisabledCastlingFlags(move);
     }

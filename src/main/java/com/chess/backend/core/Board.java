@@ -9,7 +9,7 @@ public abstract class Board {
 
     public abstract List<Piece> getAttackingPositions(Position position);
 
-    public abstract String generateFen();
+    public abstract String generateFenString();
 
     // Using simple for now. Can be changed to bitboard in the future
     public static Board generateBoardFromFenBoard(String boardState) {

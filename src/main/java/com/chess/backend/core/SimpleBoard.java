@@ -62,7 +62,7 @@ public class SimpleBoard extends Board {
         board.add(new Piece(pieceType, currentPosition, colour));
     }
 
-    public String generateFen() {
+    public String generateFenString() {
         Map<PieceType, Character> reverseFenMap = generateReverseFenMap();
         StringBuilder fenString = new StringBuilder();
 

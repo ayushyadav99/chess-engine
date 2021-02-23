@@ -25,12 +25,21 @@ public class Position {
         if(chessSquare.equals("-")) {
             return new Position(-1,-1);
         }
-        Integer row = Integer.parseInt(chessSquare.substring(1,1));
+        Integer row = Integer.parseInt(chessSquare.substring(1))-1;
         Integer col = chessSquare.charAt(0) - 'a';
         return new Position(row, col);
     }
 
     public Integer getIndex() {
         return row * 8 + col;
+    }
+
+    public String generateFenString() {
+        if(row == -1 && col == -1) {
+            return "-";
+        }
+        else {
+            return getChessSquare();
+        }
     }
 }

@@ -1,7 +1,6 @@
 package com.chess.backend.core;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.*;
@@ -58,5 +57,11 @@ public class State {
 
     public State getNewUpdatedState(Move move) {
         return this;
+    }
+    
+    public String generateFenString() {
+        return board.generateFenString() + " " + colourToMove.generateFenString() + " " +
+                castlingState.generateFenString() + " " + enPassantPawnPosition.generateFenString() + " " +
+                halfMoveCounter.toString() + " " + fullMoveCounter.toString();
     }
 }
