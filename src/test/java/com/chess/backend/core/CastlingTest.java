@@ -9,8 +9,8 @@ public class CastlingTest {
     @Test
     public void getCastlingFromStateAllStatesTest() {
         Castling actualCastling = Castling.getCastlingFromState("KQkq");
-        Castling expectedCastling = new Castling(true,true,
-                true, true);
+        Castling expectedCastling = new Castling(true, true,
+                true, true, false, false);
 //        Assertions.assertThat(expectedCastling, actualCastling);
         Assertions.assertThat(actualCastling)
                 .usingRecursiveComparison()
@@ -21,7 +21,7 @@ public class CastlingTest {
     public void getCastlingFromStateQueenTest() {
         Castling actualCastling = Castling.getCastlingFromState("Qq");
         Castling expectedCastling = new Castling(false,true,
-                false, true);
+                false, true, false, false);
         Assertions.assertThat(actualCastling)
                 .usingRecursiveComparison()
                 .isEqualTo(expectedCastling);
@@ -31,7 +31,7 @@ public class CastlingTest {
     public void getCastlingFromStateNoTest() {
         Castling actualCastling = Castling.getCastlingFromState("-");
         Castling expectedCastling = new Castling(false, false,
-                false, false);
+                false, false, false, false);
         Assertions.assertThat(actualCastling)
                 .usingRecursiveComparison()
                 .isEqualTo(expectedCastling);

@@ -26,7 +26,7 @@ public class Position {
             return new Position(-1,-1);
         }
         Integer row = Integer.parseInt(chessSquare.substring(1,1));
-        Integer col = (Integer)(chessSquare.charAt(0)-'a');
+        Integer col = chessSquare.charAt(0) - 'a';
         return new Position(row, col);
     }
 
