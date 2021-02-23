@@ -10,7 +10,7 @@ import lombok.Getter;
 public class Game {
     private final GameUser userWhite;
     private final GameUser userBlack;
-    private State currState;
+    private final State currState;
 
     public void makeMove(GameUser userWhite, GameUser userBlack, State currState) {
 
