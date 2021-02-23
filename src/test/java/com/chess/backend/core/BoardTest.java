@@ -1,2 +1,5 @@
-package com.chess.backend.core;public class BoardTest {
+package com.chess.backend.core;
+
+public class BoardTest {
+    
 }
