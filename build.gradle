@@ -30,9 +30,6 @@ application {
 }
 
 dependencies {
-    // logging
-    compile 'log4j:log4j:1.2.17'
-
     // spring boot - microservices
     implementation 'org.springframework.boot:spring-boot-starter'
 

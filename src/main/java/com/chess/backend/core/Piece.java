@@ -8,9 +8,14 @@ import lombok.Setter;
 @Setter
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public class Piece {
     private PieceType pieceType;
     private Position position; // Is this needed?
     private Colour colour;
+
+    public Piece(Position position) {
+        this.pieceType = PieceType.NONE;
+        this.position = position;
+        this.colour = Colour.NONE;
+    }
 }

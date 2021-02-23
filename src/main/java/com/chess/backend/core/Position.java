@@ -22,8 +22,15 @@ public class Position {
     }
 
     public static Position getPositionFromChessSquare(String chessSquare) {
+        if(chessSquare.equals("-")) {
+            return new Position(-1,-1);
+        }
         Integer row = Integer.parseInt(chessSquare.substring(1,1));
         Integer col = (Integer)(chessSquare.charAt(0)-'a');
         return new Position(row, col);
+    }
+
+    public Integer getIndex() {
+        return row * 8 + col;
     }
 }
