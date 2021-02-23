@@ -21,8 +21,7 @@ public class SimpleBoard extends Board {
         return new ArrayList<Piece>();
     }
 
-    @Override
-    public void generateBoardFromFen(String fen) {
-
+    public static SimpleBoard generateBoardFromFenBoard(String boardState) {
+        return new SimpleBoard(new ArrayList<>());
     }
 }

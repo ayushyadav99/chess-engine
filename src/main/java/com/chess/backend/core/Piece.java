@@ -12,5 +12,5 @@ import lombok.Setter;
 public class Piece {
     private PieceType pieceType;
     private Position position; // Is this needed?
-    private Turn turn;
+    private Colour colour;
 }

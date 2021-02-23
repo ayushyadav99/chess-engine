@@ -17,6 +17,6 @@ public class Game {
     }
 
     public void updateState(Move move) {
-        currState = currState.getNextState(move);
+        currState.updateState(move);
     }
 }

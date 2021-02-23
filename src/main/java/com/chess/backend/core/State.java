@@ -3,31 +3,49 @@ package com.chess.backend.core;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Getter
 @Setter
 public class State {
-    private final Board board;
-    private final Piece enPassantPawn;
-    private final Turn turn;
-    private final Integer halfMoveCounter;
-    private final Integer fullMoveCounter;
-    private final Map<Piece, List<Move>> validMoveForPieceMap;
+    private Board board;
+    private Colour colourToMove;
+    private Castling castlingState;
+    private Position enPassantPawnPosition;
+    private Integer halfMoveCounter;
+    private Integer fullMoveCounter;
+    private Map<Piece, List<Move>> validMoveForPieceMap;
 
-    State(Board board, Piece enPassantPawn, Turn turn,
-          Integer halfMoveCounter, Integer fullMoveCounter) {
+    State(Board board, Colour colourToMove, Castling castlingState,
+          Position enPassantPawnPosition, Integer halfMoveCounter, Integer fullMoveCounter) {
         this.board = board;
-        this.enPassantPawn = enPassantPawn;
-        this.turn = turn;
+        this.enPassantPawnPosition = enPassantPawnPosition;
+        this.colourToMove = colourToMove;
+        this.castlingState = castlingState;
         this.halfMoveCounter = halfMoveCounter;
         this.fullMoveCounter = fullMoveCounter;
         validMoveForPieceMap = computeAllValidMoves();
     }
 
+    public static State generateStateFromFen(String fen) {
+        List<String> states = new ArrayList<String>(Arrays.asList(fen.split(" ")));
+
+        String boardState = states.get(0);
+        String colourState = states.get(1);
+        String castlingState = states.get(2);
+        String enPassantState = states.get(3);
+        String halfMoveState = states.get(4);
+        String fullMoveState = states.get(5);
+
+        Board board = Board.generateBoardFromFenBoard(boardState);
+        Colour colour = Colour.getTurnFromState(colourState);
+        Castling castling = Castling.getCastlingFromState(castlingState);
+        Position position  = Position.getPositionFromChessSquare(enPassantState);
+        Integer halfMoveCounter = Integer.parseInt(halfMoveState);
+        Integer fullMoveCounter = Integer.parseInt(fullMoveState);
+
+        return new State(board, colour, castling, position, halfMoveCounter, fullMoveCounter);
+    }
 
     List<Move> getValidMoves(Piece piece) {
         return new ArrayList<Move>();
@@ -37,7 +55,7 @@ public class State {
         return new HashMap<Piece, List<Move>>();
     }
 
-    public State getNextState(Move move) {
-        return this;
+    public void updateState(Move move) {
+
     }
 }
