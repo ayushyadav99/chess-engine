@@ -36,4 +36,12 @@ public class StateTest {
         String finalFenString = state.generateFenString();
         Assertions.assertThat(finalFenString).isEqualTo(fenString);
     }
+
+    @Test
+    public void fenGeneratorTest5() {
+        String fenString = "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w - - 0 2";
+        State state = State.generateStateFromFen(fenString);
+        String finalFenString = state.generateFenString();
+        Assertions.assertThat(finalFenString).isEqualTo(fenString);
+    }
 }
