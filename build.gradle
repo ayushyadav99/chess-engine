@@ -1,10 +1,12 @@
 plugins {
     id 'java'
-    id 'application'
+    //id 'application'
     id 'org.springframework.boot' version '2.0.4.RELEASE'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     // Writing compact code - Lombok
     id 'io.freefair.lombok' version '5.3.0'
+    // to invoke node from gradle for building the js - node-gradle.node
+    id "com.github.node-gradle.node" version "3.0.1"
 }
 
 group = 'com.chess'
@@ -15,19 +17,23 @@ repositories {
     mavenCentral()
 }
 
-jar {
-    manifest {
-        attributes "Main-Class": "FizzBuzzProcessor"
-    }
-
-    from {
-        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-    }
+node {
+    version = '15.6.0'
 }
 
-application {
-    mainClassName = 'FizzBuzzProcessor'
-}
+//jar {
+//    manifest {
+//        attributes "Main-Class": "FizzBuzzProcessor"
+//    }
+//
+//    from {
+//        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+//    }
+//}
+
+//application {
+//    mainClassName = 'FizzBuzzProcessor'
+//}
 
 dependencies {
     // logging
@@ -47,6 +53,21 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     runtimeOnly 'com.h2database:h2'
 }
+
+task buildReactApp(type: NodeTask, dependsOn: 'npmInstall') {
+    script = project.file('node_modules/webpack/bin/webpack.js')
+    args = [
+            '--mode', 'development',
+            '--entry', './src/main/java/com/chess/frontend/index.jsx',
+            '-o', './src/main/resources/static/dist'
+    ]
+}
+
+processResources.dependsOn 'buildReactApp'
+clean.delete << file('node_modules')
+clean.delete << file('src/main/resources/static/dist')
+
+
 
 test {
     useJUnitPlatform()
