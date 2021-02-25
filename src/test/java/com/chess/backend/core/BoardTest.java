@@ -1,5 +1,4 @@
-package com.chess.backend.game;
+package com.chess.backend.core;
 
 public class BoardTest {
-
 }

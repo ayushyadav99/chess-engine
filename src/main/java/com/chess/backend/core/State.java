@@ -8,16 +8,16 @@ import java.util.*;
 @Getter
 @Setter
 public class State {
-    private Board board;
-    private Colour colourToMove;
-    private Castling castlingState;
-    private Position enPassantPawnPosition;
-    private Integer halfMoveCounter;
-    private Integer fullMoveCounter;
-    private Map<Piece, List<Move>> validMoveForPieceMap;
+    private final Board board;
+    private final Colour colourToMove;
+    private final Castling castlingState;
+    private final Position enPassantPawnPosition;
+    private final Integer halfMoveCounter;
+    private final Integer fullMoveCounter;
+    private final Map<Piece, List<Move>> validMoveForPieceMap;
 
-    State(Board board, Colour colourToMove, Castling castlingState,
-          Position enPassantPawnPosition, Integer halfMoveCounter, Integer fullMoveCounter) {
+    public State(Board board, Colour colourToMove, Castling castlingState,
+                 Position enPassantPawnPosition, Integer halfMoveCounter, Integer fullMoveCounter) {
         this.board = board;
         this.enPassantPawnPosition = enPassantPawnPosition;
         this.colourToMove = colourToMove;
@@ -55,7 +55,13 @@ public class State {
         return new HashMap<Piece, List<Move>>();
     }
 
-    public void updateState(Move move) {
-
+    public State getNewUpdatedState(Move move) {
+        return this;
+    }
+    
+    public String generateFenString() {
+        return board.generateFenString() + " " + colourToMove.generateFenString() + " " +
+                castlingState.generateFenString() + " " + enPassantPawnPosition.generateFenString() + " " +
+                halfMoveCounter.toString() + " " + fullMoveCounter.toString();
     }
 }
